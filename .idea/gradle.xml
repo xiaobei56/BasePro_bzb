@@ -14,10 +14,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/BzbLib" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/mvcdemo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>
