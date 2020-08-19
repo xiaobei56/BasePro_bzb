@@ -25,19 +25,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @description TODO
  */
 class RetrofitInsJava {
-    private volatile static RetrofitInsJava instance =null;
-    
+    private volatile static RetrofitInsJava instance = null;
+
     /**
-     * 私有构造 
+     * 私有构造
      */
     private RetrofitInsJava() {
     }
+
     /**
      * 单例模式
      */
     public static RetrofitInsJava getInstance() {
         if (instance == null) {
-            synchronized(RetrofitInsJava.class){
+            synchronized (RetrofitInsJava.class) {
                 if (instance == null) {
                     instance = new RetrofitInsJava();
                 }
@@ -46,14 +47,14 @@ class RetrofitInsJava {
         return instance;
     }
 
-    public Retrofit getService(final Context context){
+    public Retrofit getService(final Context context) {
 //        File file=
 //        Cache cache=new Cache()
-        OkHttpClient client=new OkHttpClient.Builder()
+        OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        Response originalResponse=chain.proceed(chain.request());
+                        Response originalResponse = chain.proceed(chain.request());
                         if (!originalResponse.headers("Set-Cookie").isEmpty()) {
                             HashSet<String> cookies = new HashSet<>();
 
@@ -61,23 +62,25 @@ class RetrofitInsJava {
                                 cookies.add(header);
                             }
 
-                            SharedPreferences.Editor config = context.getSharedPreferences("config", MyApplication.getContext().MODE_PRIVATE)
+                            SharedPreferences.Editor config = context.getSharedPreferences("config", Context.MODE_PRIVATE)
                                     .edit();
                             config.putStringSet("cookie", cookies);
                             config.commit();
                         }
-                        return originalResponse.;
+                        return originalResponse.priorResponse();
                     }
                 })
-                .addNetworkInterceptor()
-                .connectTimeout(10000)
+//                .addNetworkInterceptor()
+//                .connectTimeout(10000)
                 .retryOnConnectionFailure(false)
-                .cache().build();
-        Retrofit retrofit=new Retrofit
+//                .cache()
+                .build();
+        Retrofit retrofit = new Retrofit
                 .Builder().baseUrl("http://101.200.177.116:38080/app/mock/16/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(client)
                 .build();
+        return retrofit;
     }
 }

@@ -1,0 +1,1 @@
+1 、深入理解java虚拟机(linux与jvm内存关系)( https://www.cnblogs.com/qq289736032/p/9185964.html )

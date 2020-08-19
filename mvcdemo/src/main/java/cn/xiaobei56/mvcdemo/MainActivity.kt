@@ -2,6 +2,7 @@ package cn.xiaobei56.mvcdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import cn.xiaobei56.mvcdemo.const.ConfigConstants
 import java.io.File
 
@@ -15,5 +16,9 @@ class MainActivity : AppCompatActivity() {
     fun init(){
          file=ConfigConstants(this).requestCatch;
         println(file.toString())
+    }
+
+    fun onAction(view: View) {
+
     }
 }

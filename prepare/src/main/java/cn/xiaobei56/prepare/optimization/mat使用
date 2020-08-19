@@ -1,0 +1,2 @@
+1. 强引用、弱引用和软引用（https://blog.csdn.net/yincheng886337/article/details/50479459）
+    weakReference + ReferenceQueue 使用
